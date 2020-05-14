@@ -17,7 +17,7 @@ function SetToZero(map,a,b)
     }
 
 
-    if(b-1 > 0 )
+    if(b-1 >= 0 )
     {
     //land to the left
     if (map[a][b - 1] == 1)
@@ -28,7 +28,7 @@ function SetToZero(map,a,b)
     }
      
     //land up
-    if(a-1>0)
+    if(a-1>=0)
     {
     if(map[a-1][b] == 1)
     {
