@@ -25,10 +25,10 @@ describe("Count Islands", () => {
 
   test("4x4 island", () => {
     const grid = [
-        [1, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1],
-        [0, 1, 0, 0],
+      [1, 1, 0, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 1],
+      [0, 1, 0, 0],
     ];
 
     expect(countIslands(grid)).toBe(4);
