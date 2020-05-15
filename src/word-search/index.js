@@ -8,8 +8,30 @@ c. get alphabet representations of visited pairs from words
 d. if all word is in alpha reprensation- then the word was found
 */
 
+const words = [
+  ["C", "D", "Y", "C", "X"],
+  ["A", "N", "Y", "Z", "X"],
+  ["T", "F", "Z", "A", "T"],
+  ["M", "D", "B", "U", "T"],
+];
+
+const word="CAT"
 function wordSearch(words, word) {
 
+    let wordIndex = [];
+    for (let p = 0; p < words.length; p++) {
+      for (m = 0; m < words[p].length; m++) {
+        if (word.includes(words[p][m])) {
+          wordIndex.push([p, m]);
+        }
+      }
+    }
+    console.log(wordIndex)
+
+    
+
 }
+
+console.log(wordSearch(words,word))
 
 module.exports = wordSearch;
