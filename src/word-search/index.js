@@ -24,26 +24,25 @@ function checkWord(words, word, row, col, count){
         count += 1;
 
         if(row+1 < words.length){
-          if(words[row+1][col] == word[count]){
+          if(words[row+1][col] === word[count]){
               checkWord(words, word, row+1, col, count);
           }
         }
-        
+
         if(row-1 >= 0){
-            if(words[row-1][col] == word[count]){
+            if(words[row-1][col] === word[count]){
                 checkWord(words, word, row-1, col, count);
             }
         }
 
         if (col+1 < words[row].length){
-          if (words[row][col + 1] == word[count])
-          {
+          if (words[row][col+1] === word[count]){
               checkWord(words, word, row, col + 1, count);
           }
         }
 
         if(col-1 >= 0){
-            if(words[row][col-1] == word[count]){
+            if(words[row][col-1] === word[count]){
                 checkWord(words, word, row, col-1, count);
             }
         }
