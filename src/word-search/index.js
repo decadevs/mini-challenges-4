@@ -15,41 +15,33 @@ function wordSearch(words, word) {
 }
 
 
-function checkWord(words, word, row, col, count){
+function checkWord(words, word, row, col,count){
 
-        words[row][col] = 0;
-        count += 1;
+  words[row][col] = 0;
+  count += 1;
 
-        if(row+1 < words.length){
-          if(words[row+1][col] === word[count]){
-              checkWord(words, word, row+1, col, count);
-          }
-        }
+  if(row+1 < words.length && words[row+1][col] === word[count]){
+    checkWord(words, word, row+1, col, count);
+  }
 
-        if(row-1 >= 0){
-            if(words[row-1][col] === word[count]){
-                checkWord(words, word, row-1, col, count);
-            }
-        }
+  if(row-1 >= 0 && words[row-1][col] === word[count]){
+    checkWord(words, word, row-1, col, count);
+  }
 
-        if (col+1 < words[row].length){
-          if (words[row][col+1] === word[count]){
-              checkWord(words, word, row, col + 1, count);
-          }
-        }
+  if (col+1 < words[row].length && words[row][col+1] === word[count]){
+    checkWord(words, word, row, col + 1, count);
+  }
 
-        if(col-1 >= 0){
-            if(words[row][col-1] === word[count]){
-                checkWord(words, word, row, col-1, count);
-            }
-        }
+  if(col-1 >= 0 && words[row][col-1] === word[count]){
+    checkWord(words, word, row, col-1, count);
+  }
 
-        if(count === word.length){
-            word.splice(0, word.length);
-        }
+  if(count === word.length){
+      word.splice(0, word.length);
+  }
 
-         words[row][col] = word[count-1];
+  words[row][col] = word[count-1];
 
-      }
+}
 
 module.exports = wordSearch;
