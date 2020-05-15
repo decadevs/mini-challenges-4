@@ -1,4 +1,5 @@
 function wordSearch(words, word) {
+
   let k = 0;
   word = word.split('');
 
@@ -39,6 +40,8 @@ function checkWord(words, word, row, col, count){
   if(count === word.length){
     return word.splice(0);
   }
+  
+  words[row][col] = word[count-1];
 
 }
 
