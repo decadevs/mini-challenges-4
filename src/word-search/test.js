@@ -122,4 +122,28 @@ describe("Word Search", () => {
 
     expect(wordSearch(words, word)).toBe(true);
   });
+
+  test("You've got the word", () => {
+    const words = [
+      ["C", "A", "A"],
+      ["A", "A", "A"],
+      ["B", "C", "D"],
+    ];
+
+    const word = "AAB";
+
+    expect(wordSearch(words, word)).toBe(true);
+  });
+
+  test("Because you can See", () => {
+    const words = [
+      ["A", "B", "C", "E"],
+      ["S", "F", "C", "S"],
+      ["A", "D", "E", "E"],
+    ];
+
+    const word = "SEE";
+
+    expect(wordSearch(words, word)).toBe(true);
+  });
 });
