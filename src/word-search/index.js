@@ -1,12 +1,11 @@
 function wordSearch(words, word) {
 
-  let k = 0;
   word = word.split('');
 
   for (let i=0; i<words.length; i++){
     for (let j=0; j<words[i].length; j++){
       if(words[i][j] === word[0]){
-        checkWord(words, word, i, j, k);
+        checkWord(words, word, i, j, k=0);
       }
     }
   }
@@ -40,7 +39,7 @@ function checkWord(words, word, row, col, count){
   if(count === word.length){
     return word.splice(0);
   }
-  
+// Put back the letter in the grid
   words[row][col] = word[count-1];
 
 }
