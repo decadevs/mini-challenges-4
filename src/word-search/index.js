@@ -29,11 +29,8 @@ function wordSearch(words, word) {
     console.log(wordIndex)
 
     let i =0
-    let words_length=words.length
     let visited=[]
     visited.push(wordIndex[0]) //initialize visited with first index array
-    let index_row=visited[0]
-    let index_col=visited[1]
 
     while(i<visited.length){
         let row_index=visited[i][0]
@@ -42,13 +39,20 @@ function wordSearch(words, word) {
         let right_ajacent_index=[row_index,col_index+1]
         let bottom_ajacent_index=[row_index+1,col_index]
 
-        
+        for(let x=0;x<wordIndex.length;x++){
+            if(JSON.stringify(wordIndex[x])===JSON.stringify(right_ajacent_index) && (visited.every(e=>JSON.stringify(e)!==JSON.stringify(right_ajacent_index)))){
+                visited.push(right_ajacent_index)
+            }
+            if (JSON.stringify(wordIndex[x]) === JSON.stringify(bottom_ajacent_index) && visited.every((e) => JSON.stringify(e) !== JSON.stringify(bottom_ajacent_index))) {
+              visited.push(bottom_ajacent_index);
+            }
+        }
 
-
-
-
+        i+=1
 
     }
+
+    
 
 
 
