@@ -33,7 +33,7 @@ function countIslands(grid) {
                 currentIndex = queue[0];
                 if ((currentIndex[1] + 1) < COL_LEN) {
                     index = [currentIndex[0], currentIndex[1] + 1];
-                    if ((grid[currentIndex[0]][currentIndex[1] + 1] === 1) && !(isArrayInArray(visited, index))) {
+                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
                         visited.push(index);
                         queue.push(index);
                     }
@@ -41,7 +41,7 @@ function countIslands(grid) {
 
                 if ((currentIndex[1] - 1) >= 0) {
                     index = [currentIndex[0], currentIndex[1] - 1];
-                    if ((grid[currentIndex[0]][currentIndex[1] - 1] === 1) && !(isArrayInArray(visited, index))) {
+                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
                         visited.push(index);
                         queue.push(index);
                     }
@@ -49,7 +49,7 @@ function countIslands(grid) {
 
                 if ((currentIndex[0] + 1) < ROW_LEN) {
                     index = [currentIndex[0] + 1, currentIndex[1]];
-                    if ((grid[currentIndex[0] + 1][currentIndex[1]] === 1) && !(isArrayInArray(visited, index))) {
+                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
                         visited.push(index);
                         queue.push(index);
                     }
@@ -57,7 +57,7 @@ function countIslands(grid) {
 
                 if ((currentIndex[0] - 1) >= 0) {
                     index = [currentIndex[0] - 1, currentIndex[1]];
-                    if ((grid[currentIndex[0] - 1][currentIndex[1]] === 1) && !(isArrayInArray(visited, index))) {
+                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
                         visited.push(index);
                         queue.push(index);
                     }
