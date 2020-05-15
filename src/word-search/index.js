@@ -15,7 +15,7 @@ function wordSearch(words, word) {
 }
 
 
-function checkWord(words, word, row, col,count){
+function checkWord(words, word, row, col, count){
 
   words[row][col] = 0;
   count += 1;
@@ -29,7 +29,7 @@ function checkWord(words, word, row, col,count){
   }
 
   if (col+1 < words[row].length && words[row][col+1] === word[count]){
-    checkWord(words, word, row, col + 1, count);
+    checkWord(words, word, row, col+1, count);
   }
 
   if(col-1 >= 0 && words[row][col-1] === word[count]){
@@ -37,7 +37,7 @@ function checkWord(words, word, row, col,count){
   }
 
   if(count === word.length){
-      word.splice(0, word.length);
+    return word.splice(0);
   }
 
   words[row][col] = word[count-1];
