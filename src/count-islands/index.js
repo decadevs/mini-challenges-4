@@ -1,22 +1,46 @@
 function countIslands(grid) {
-  let count = 0;
-  let flag = 0
-  let colMatch = []
+  let count = 0
+  let list = []
+
+  grid.forEach((element, rootI) => {
+    element.forEach((item, childI) => {
+      list[rootI.toString() + childI.toString()] = item
+    })
+  });
 
   grid.forEach((element, rootIndex) => {
-    let colIndexes = []
     element.forEach((item, childIndex) => {
-      if (item == 1 && item !== element[childIndex - 1]) {
+      if (item == 1 &&
+        list[rootIndex.toString() + childIndex.toString()] !== null) {
         count++
-        colIndexes.push(childIndex)
-        if (flag > 0 && item === grid[rootIndex - 1][childIndex]) {
-          count--
-        }
+        crawler(rootIndex,childIndex)
       }
     })
-    flag++
-    colMatch = colIndexes;
   });
+
+  function crawler(row, col) {
+    list[row.toString() + col.toString()] = null
+
+    if ((row > 0) &&
+      grid[row - 1][col] == 1 &&
+      list[(row - 1).toString() + col.toString()] !== null) {
+      crawler(row - 1, col)
+
+      } else if ((row < grid.length - 1) &&
+        grid[row + 1][col] == 1 &&
+        list[(row + 1).toString() + col.toString()] !== null) {
+      crawler(row + 1, col)
+
+      } else if (grid[row][col - 1] == 1 &&
+        list[row.toString() + (col - 1).toString()] !== null) {
+      crawler(row, col - 1)
+
+      } else if (grid[row][col + 1] == 1 &&
+        list[row.toString() + (col + 1).toString()] !== null) {
+          crawler(row, col + 1)
+      }
+  }
+
   return count;
 }
 
