@@ -27,7 +27,6 @@ function wordSearch(words, word) {
             return;
         }
         if (words[index[0]][index[1]] !== word[wordIndexCount] || isArrayInArray(queue, index)) {
-            queue = [];
             return;
         }
 
@@ -60,6 +59,7 @@ function wordSearch(words, word) {
                 continue;
             }
             currentIndex = [i, j];
+            queue = [];
             depthSearch(currentIndex, wordIndexCount, queue);
 
             if (answer) {
@@ -70,4 +70,12 @@ function wordSearch(words, word) {
     return false;
 }
 
+const words = [
+  ["C", "A", "A"],
+  ["A", "A", "A"],
+  ["B", "C", "D"],
+];
+
+const word = "AAB";
+wordSearch(words, word);
 module.exports = wordSearch;
