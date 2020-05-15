@@ -39,25 +39,25 @@ const isPointVisited = (point) => {
       if( validateNextRowAndCol(row - 1, col) 
       && !isPointVisited([row - 1, col], visitedPoints) 
       && grid[row-1][col] === 1 ){
-        return searchIsland([row - 1, col]);
+         searchIsland([row - 1, col]);
       }
       //crawl down
       if( validateNextRowAndCol(row + 1, col) 
       && !isPointVisited([row + 1, col]) 
       && grid[row + 1][col] === 1 ){
-        return searchIsland([row + 1, col]);
+         searchIsland([row + 1, col]);
       }
       //crawl rigth
       if( validateNextRowAndCol(row, col + 1) 
       && !isPointVisited([row, col + 1]) 
       && grid[row][col + 1] === 1 ){
-        return searchIsland([row, col + 1]);
+         searchIsland([row, col + 1]);
       }
       //crawl left
       if( validateNextRowAndCol(row, col - 1) 
       && !isPointVisited([row, col - 1]) 
       && grid[row][col - 1] === 1 ){
-        return searchIsland([row, col -1]);
+         searchIsland([row, col -1]);
       }
 
       return searchIsland(nextPosition);
@@ -79,18 +79,30 @@ const isPointVisited = (point) => {
 
 };
 
- const grid = [
-      [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1],
-      [1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-      [1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0],
-      [1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-      [1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0],
-      [1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
-      [1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
-      [1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-      [1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0],
+    const grid = [
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
     ];
 
-  console.log(countIslands(grid));
+
+
+    
+      console.log(countIslands(grid));
 
 module.exports = countIslands;
