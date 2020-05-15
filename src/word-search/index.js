@@ -52,7 +52,19 @@ function wordSearch(words, word) {
 
     }
 
+    console.log(visited)
+
+    let alphabet_pos_visited=[]
+
+    for(let j=0;j<visited.length;j++){
+        alphabet_pos_visited.push(words[visited[j][0]][visited[j][1]])
+
+    }
+    console.log(alphabet_pos_visited)
+
     
+
+
 
 
 
