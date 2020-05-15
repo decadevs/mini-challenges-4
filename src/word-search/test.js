@@ -135,7 +135,7 @@ describe("Word Search", () => {
     expect(wordSearch(words, word)).toBe(true);
   });
 
-  test("Because you ca See", () => {
+  test("Because you can See", () => {
     const words = [
       ["A", "B", "C", "E"],
       ["S", "F", "C", "S"],
