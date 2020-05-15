@@ -26,16 +26,16 @@ function countIslands(grid) {
       list[(row - 1).toString() + col.toString()] !== null) {
       crawler(row - 1, col)
 
-      } else if ((row < grid.length - 1) &&
+      } if ((row < grid.length - 1) &&
         grid[row + 1][col] == 1 &&
         list[(row + 1).toString() + col.toString()] !== null) {
       crawler(row + 1, col)
 
-      } else if (grid[row][col - 1] == 1 &&
+      } if (grid[row][col - 1] == 1 &&
         list[row.toString() + (col - 1).toString()] !== null) {
       crawler(row, col - 1)
 
-      } else if (grid[row][col + 1] == 1 &&
+      } if (grid[row][col + 1] == 1 &&
         list[row.toString() + (col + 1).toString()] !== null) {
           crawler(row, col + 1)
       }
