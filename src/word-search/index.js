@@ -35,7 +35,6 @@ function wordSearch(words, word) {
 
       visitedPoints.push(location);
       const nextLetter = word[stringPosition + 1];
-      console.log(nextLetter)
       const nextPosition = null;
       const [row, col] = location;
       let isFound;
@@ -43,7 +42,6 @@ function wordSearch(words, word) {
       if( validateNextRowAndCol(row - 1, col) 
       && !isPointVisited([row - 1, col], visitedPoints) 
       && words[row-1][col] === nextLetter ){
-        console.log(!isPointVisited([row - 1, col], visitedPoints))
         isFound = searchWord([row - 1, col], stringPosition + 1, visitedPoints, word );
         if(isFound) return true;
       }
@@ -77,7 +75,6 @@ function wordSearch(words, word) {
     rowLength = words.length -1 ;
     for(let col = 0; col < words[row].length; col++){
       colLength = words[row].length - 1;
-      //console.log(words[row][col])
       if(words[row][col] === word[0]){
         let isFound = searchWord([row, col], 0, [], word);
         if(isFound) return true;
@@ -86,16 +83,5 @@ function wordSearch(words, word) {
   }
   return false;
 }
-
-
-    const words = [
-      ["P", "R", "A", "B", "C"],
-      ["R", "N", "O", "O", "T"],
-      ["E", "A", "I", "O", "O"],
-      ["C", "I", "S", "E", "L"],
-    ];
-
-    const word = "PRECISELY";
-    console.log(wordSearch(words, word))
 
 module.exports = wordSearch;
