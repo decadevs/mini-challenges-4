@@ -1,3 +1,3 @@
-function countIslands(grid) {}
+function countIslands(grid) { }
 
 module.exports = countIslands;
