@@ -8,13 +8,15 @@ c. get alphabet representations of visited pairs from words
 d. if all word is in alpha reprensation- then the word was found
 */
 
-const words = [
-  ["A", "B", "C", "E"],
-  ["S", "F", "C", "S"],
-  ["A", "D", "E", "E"],
-];
+// const words = [
+//   ["D", "S", "A", "N", "C"],
+//   ["I", "N", "O", "I", "T"],
+//   ["T", "A", "T", "R", "O"],
+//   ["M", "F", "O", "U", "T"],
+// ];
 
-const word="SEE"
+// const word="SANCTIONS"
+
 function wordSearch(words, word) {
 
     let wordIndex = [];
@@ -25,7 +27,9 @@ function wordSearch(words, word) {
         }
       }
     }
-    console.log(wordIndex)
+    if(word[0]===word[word.length-1]){
+        return false
+    }
 
     let i =0
     let visited=[]
@@ -37,6 +41,8 @@ function wordSearch(words, word) {
 
         let right_ajacent_index=[row_index,col_index+1]
         let bottom_ajacent_index=[row_index+1,col_index]
+        let left_ajacent_index=[row_index,col_index-1]
+        let top_ajacent_index=[row_index-1,col_index]
 
         for(let x=0;x<wordIndex.length;x++){
             if(JSON.stringify(wordIndex[x])===JSON.stringify(right_ajacent_index) && (visited.every(e=>JSON.stringify(e)!==JSON.stringify(right_ajacent_index)))){
@@ -45,13 +51,18 @@ function wordSearch(words, word) {
             if (JSON.stringify(wordIndex[x]) === JSON.stringify(bottom_ajacent_index) && visited.every((e) => JSON.stringify(e) !== JSON.stringify(bottom_ajacent_index))) {
               visited.push(bottom_ajacent_index);
             }
+            if (JSON.stringify(wordIndex[x]) == JSON.stringify(left_ajacent_index) && visited.every((e) => JSON.stringify(e) !== JSON.stringify(left_ajacent_index))) {
+              visited.push(left_ajacent_index);
+            }
+            if (JSON.stringify(wordIndex[x]) === JSON.stringify(top_ajacent_index) && visited.every((e) => JSON.stringify(e) !== JSON.stringify(top_ajacent_index))) {
+              visited.push(top_ajacent_index);
+            }
         }
 
         i+=1
 
     }
 
-    console.log(visited)
 
     let alphabet_pos_visited=[]
 
@@ -59,7 +70,7 @@ function wordSearch(words, word) {
         alphabet_pos_visited.push(words[visited[j][0]][visited[j][1]])
 
     }
-    console.log(alphabet_pos_visited)
+    
 
     let count=0
     for(let w=0;w<word.length;w++){
@@ -67,7 +78,7 @@ function wordSearch(words, word) {
             count+=1
         }
     }
-    console.log(count)
+    
 
     if(count===word.length){
         return true
@@ -75,16 +86,6 @@ function wordSearch(words, word) {
     else{
         return false
     }
-
-
-
-
-
-
-
-
 }
-
-console.log(wordSearch(words,word))
 
 module.exports = wordSearch;
