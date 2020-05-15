@@ -28,7 +28,19 @@ function wordSearch(words, word) {
     }
     console.log(wordIndex)
 
+    let i =0
+    let words_length=words.length
+    let visited=[]
+    visited.push(wordIndex[0]) //initialize visited with first index array
+    let index_row=visited[0]
+    let index_col=visited[1]
+
     
+
+
+
+
+
 
 }
 
