@@ -14,12 +14,14 @@ function countIslands(grid) {
   return numOfIslands;
 }
 
+
 function dfs(grid, row, col){
   if(row<0 || row>=grid.length || col<0 || col>=grid[row].length || grid[row][col] === 0){
     return 0;
   }
 
   grid[row][col] = 0;
+  
   dfs(grid, row+1, col);
   dfs(grid, row-1, col);
   dfs(grid, row, col+1);

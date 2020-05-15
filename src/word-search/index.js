@@ -10,13 +10,10 @@ function wordSearch(words, word) {
     }
   }
 
-    if(word.length === 0){
-        return true;
-    }
-
-    return false
+  return word.length === 0;
 
 }
+
 
 function checkWord(words, word, row, col, count){
 
