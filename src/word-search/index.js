@@ -2,7 +2,6 @@ function wordSearch(words, word) {
   let wordArr;
   let wordsCopy;
   let pathFound = false;
-  debugger;
   const rowLength = words.length;
   const colLength = words[0].length;
 
@@ -25,7 +24,7 @@ function wordSearch(words, word) {
       pathFound = false;
     }
     //set current node val to visited so its not used more than once
-    words[currentRow][currentCol] = "visited";
+    wordsCopy[currentRow][currentCol] = "visited";
     //explore adjacent nodes to check if path to word exists
     searchAdjacent(currentRow - 1, currentCol);
     searchAdjacent(currentRow + 1, currentCol);
@@ -33,6 +32,7 @@ function wordSearch(words, word) {
     searchAdjacent(currentRow, currentCol + 1);
     if (pathFound === false) {
       wordArr.unshift(prevLetter);
+      wordsCopy[currentRow][currentCol] = prevLetter;
     }
   };
 
