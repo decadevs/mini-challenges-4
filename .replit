@@ -1,0 +1,3 @@
+language = "nodejs"
+run = "node src/count-islands/index.js"
+test = "node src/count-island/test.js"
