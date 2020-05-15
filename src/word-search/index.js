@@ -9,13 +9,12 @@ d. if all word is in alpha reprensation- then the word was found
 */
 
 const words = [
-  ["C", "D", "Y", "C", "X"],
-  ["A", "N", "Y", "Z", "X"],
-  ["T", "F", "Z", "A", "T"],
-  ["M", "D", "B", "U", "T"],
+  ["A", "B", "C", "E"],
+  ["S", "F", "C", "S"],
+  ["A", "D", "E", "E"],
 ];
 
-const word="CAT"
+const word="SEE"
 function wordSearch(words, word) {
 
     let wordIndex = [];
@@ -62,7 +61,20 @@ function wordSearch(words, word) {
     }
     console.log(alphabet_pos_visited)
 
-    
+    let count=0
+    for(let w=0;w<word.length;w++){
+        if(alphabet_pos_visited.includes(word[w])){
+            count+=1
+        }
+    }
+    console.log(count)
+
+    if(count===word.length){
+        return true
+    }
+    else{
+        return false
+    }
 
 
 
