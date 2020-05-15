@@ -1,7 +1,7 @@
 function countIslands(grid) {
-  let island = [];
+  const island = [];
   let islandCount = 0;
-  let toCheck = [];
+  const toCheck = [];
 
   function checkNeighbours(row, col) {
     //top
