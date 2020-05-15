@@ -40,8 +40,6 @@ function checkWord(words, word, row, col, count){
     return word.splice(0);
   }
 
-  words[row][col] = word[count-1];
-
 }
 
 module.exports = wordSearch;
