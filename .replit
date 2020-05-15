@@ -1,0 +1,3 @@
+language = "nodejs"
+run = "node src/word-search/index.js"
+test = "node src/word-search/test.js"
