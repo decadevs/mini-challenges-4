@@ -24,8 +24,6 @@ function wordSearch(words, word) {
       return false;
     }
 
-    console.log(words[x]);
-
     if (
       x >= 0 &&
       x < words.length &&
