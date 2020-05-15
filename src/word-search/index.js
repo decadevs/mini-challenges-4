@@ -6,7 +6,7 @@ function wordSearch(words, word) {
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
       if (words[i][j] === word[0]) {
-        if (depthFirstSearch(0, i, j)) {
+        if (lookFor(0, i, j)) {
           return true;
         }
       }
@@ -15,7 +15,7 @@ function wordSearch(words, word) {
 
   return false;
 
-  function depthFirstSearch(index, x, y) {
+  function lookFor(index, x, y) {
     if (index === word.length) {
       return true;
     }
@@ -24,24 +24,34 @@ function wordSearch(words, word) {
       return false;
     }
 
-    if (words[x][y] !== "" && words[x][y] === word[index]) {
+    console.log(words[x]);
+
+    if (
+      x >= 0 &&
+      x < words.length &&
+      y >= 0 &&
+      y < words[0].length &&
+      words[x][y] === word[index]
+    ) {
       words[x][y] = "";
 
-      if (depthFirstSearch(index + 1, x - 1, y)) {
+      if (lookFor(index + 1, x - 1, y)) {
         return true;
       }
 
-      if (depthFirstSearch(index + 1, x + 1, y)) {
+      if (lookFor(index + 1, x + 1, y)) {
         return true;
       }
 
-      if (depthFirstSearch(index + 1, x, y - 1)) {
+      if (lookFor(index + 1, x, y - 1)) {
         return true;
       }
 
-      if (depthFirstSearch(index + 1, x, y + 1)) {
+      if (lookFor(index + 1, x, y + 1)) {
         return true;
       }
+
+      words[x][y] = word[index];
     }
   }
 }
