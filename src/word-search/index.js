@@ -2,6 +2,8 @@ function wordSearch(words, word) {
     let rowLength,
         colLength;
 
+
+    //validate if colum or row exists
     const validateNextRowAndCol = (row, col) => {
         if (row > rowLength || row < 0) {
             return false;
@@ -12,7 +14,7 @@ function wordSearch(words, word) {
         }
         return true;
     }
-
+    //check if point has been visited
     const isPointVisited = (point, arr) => {
         const [x, y] = point;
         if (!arr) return

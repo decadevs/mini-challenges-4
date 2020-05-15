@@ -4,6 +4,7 @@ function countIslands(grid) {
     counter = 0;
   const visitedPoints = [];
 
+  //validate if rows and colums exists
   const validateNextRowAndCol = (row, col) => {
     if (row > rowLength || row < 0) {
       return false;
@@ -15,6 +16,7 @@ function countIslands(grid) {
     return true;
   }
 
+  //check if the location has been visited
   const isPointVisited = (point) => {
     const [x, y] = point;
     if (visitedPoints.length === 0) return false;
