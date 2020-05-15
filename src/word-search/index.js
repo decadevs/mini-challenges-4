@@ -23,6 +23,12 @@ function checkWord(words, word, row, col, count){
         words[row][col] = 0;
         count += 1;
 
+        if(row+1 < words.length){
+          if(words[row+1][col] == word[count]){
+              checkWord(words, word, row+1, col, count);
+          }
+        }
+        
         if(row-1 >= 0){
             if(words[row-1][col] == word[count]){
                 checkWord(words, word, row-1, col, count);
@@ -33,12 +39,6 @@ function checkWord(words, word, row, col, count){
           if (words[row][col + 1] == word[count])
           {
               checkWord(words, word, row, col + 1, count);
-          }
-        }
-
-        if(row+1 < words.length){
-          if(words[row+1][col] == word[count]){
-              checkWord(words, word, row+1, col, count);
           }
         }
 
