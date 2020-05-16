@@ -135,7 +135,7 @@ describe("Word Search", () => {
     expect(wordSearch(words, word)).toBe(true);
   });
 
-  test("Because you ca See", () => {
+  test("Because you can See", () => {
     const words = [
       ["A", "B", "C", "E"],
       ["S", "F", "C", "S"],
@@ -145,5 +145,19 @@ describe("Word Search", () => {
     const word = "SEE";
 
     expect(wordSearch(words, word)).toBe(true);
+  });
+
+  test("Horizontal misplaced characters", () => {
+    const words = [["A", "S", "A"]];
+    const word = "SAA";
+
+    expect(wordSearch(words, word)).toBe(false);
+  });
+
+  test("Vertical misplaced characters", () => {
+    const words = [["B"], ["A"], ["C"]];
+    const word = "ABC";
+
+    expect(wordSearch(words, word)).toBe(false);
   });
 });
