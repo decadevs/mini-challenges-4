@@ -21,27 +21,19 @@ function countIslands(grid) {
 
     // Helper function
     function breathSearch(row, col, visited) {
-        if ( grid[row][col] === 0 || isArrayInArray(visited, [row, col])) {
+        if (col >= COL_LEN || col < 0 || row >= ROW_LEN || row < 0 || grid[row][col] === 0 || isArrayInArray(visited, [row, col])) {
             return;
         }
 
         visited.push([row, col]);
 
-        if (col + 1 < COL_LEN) {
-            breathSearch(row, col + 1, visited);
-        }
+        breathSearch(row, col + 1, visited);
 
-        if (col - 1 >= 0) {
-            breathSearch(row, col - 1, visited);
-        }
+        breathSearch(row, col - 1, visited);
 
-        if (row + 1 < ROW_LEN) {
-            breathSearch(row + 1, col, visited);
-        }
+        breathSearch(row + 1, col, visited);
 
-        if (row - 1 >= 0) {
-            breathSearch(row - 1, col, visited);
-        }
+        breathSearch(row - 1, col, visited);
     }
 
     grid.forEach(function(array, i) {
