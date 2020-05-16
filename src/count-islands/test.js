@@ -135,20 +135,16 @@ describe("Count Islands", () => {
   });
 
   test("Horizontal misplaced characters", () => {
-    const words = [
-      [ "A", "S", "A" ],
-    ];
+    const words = [["A", "S", "A"]];
     const word = "SAA";
+
     expect(wordSearch(words, word)).toBe(false);
   });
 
   test("Vertical misplaced characters", () => {
-    const words = [
-      ["B"],
-      ["A"],
-      ["C"]
-    ];
+    const words = [["B"], ["A"], ["C"]];
     const word = "ABC";
+
     expect(wordSearch(words, word)).toBe(false);
   });
 });
