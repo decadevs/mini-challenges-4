@@ -6,9 +6,8 @@ function countIslands(grid) {
     const ROW_LEN = grid.length;
     const COL_LEN = grid[0].length;
     let visited = [];
-    let queue = [];
-    let index;
-    let currentIndex;
+    let row;
+    let col;
     let islandCount = 0;
 
     // Helper function
@@ -20,50 +19,39 @@ function countIslands(grid) {
         });
     }
 
+    // Helper function
+    function breathSearch(row, col, visited) {
+        if ( grid[row][col] === 0 || isArrayInArray(visited, [row, col])) {
+            return;
+        }
+
+        visited.push([row, col]);
+
+        if (col + 1 < COL_LEN) {
+            breathSearch(row, col + 1, visited);
+        }
+
+        if (col - 1 >= 0) {
+            breathSearch(row, col - 1, visited);
+        }
+
+        if (row + 1 < ROW_LEN) {
+            breathSearch(row + 1, col, visited);
+        }
+
+        if (row - 1 >= 0) {
+            breathSearch(row - 1, col, visited);
+        }
+    }
+
     grid.forEach(function(array, i) {
          array.forEach(function(value, j) {
-            index = [i, j];
-            if (grid[i][j] === 0 || isArrayInArray(visited, index)) {
+            if (grid[i][j] === 0 || isArrayInArray(visited, [i, j])) {
                 return;
             }
 
-            visited.push(index);
-            queue.push(index);
-            while (queue.length > 0) {
-                currentIndex = queue[0];
-                if ((currentIndex[1] + 1) < COL_LEN) {
-                    index = [currentIndex[0], currentIndex[1] + 1];
-                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
-                        visited.push(index);
-                        queue.push(index);
-                    }
-                }
-
-                if ((currentIndex[1] - 1) >= 0) {
-                    index = [currentIndex[0], currentIndex[1] - 1];
-                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
-                        visited.push(index);
-                        queue.push(index);
-                    }
-                }
-
-                if ((currentIndex[0] + 1) < ROW_LEN) {
-                    index = [currentIndex[0] + 1, currentIndex[1]];
-                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
-                        visited.push(index);
-                        queue.push(index);
-                    }
-                }
-
-                if ((currentIndex[0] - 1) >= 0) {
-                    index = [currentIndex[0] - 1, currentIndex[1]];
-                    if ((grid[index[0]][index[1]] === 1) && !(isArrayInArray(visited, index))) {
-                        visited.push(index);
-                        queue.push(index);
-                    }
-                }
-                queue.shift();
-            }
+            queue = [];
+            breathSearch(i, j, visited, queue);
             islandCount++;
         });
     });
