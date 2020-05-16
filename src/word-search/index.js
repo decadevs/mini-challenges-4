@@ -21,37 +21,21 @@ function wordSearch(words, word) {
   function checkNeighbours(row, col, searchIndex) {
     const adjList = [];
     //top
-    if (row > 0) {
-      if (words[row - 1][col] === word[searchIndex]) {
-        if (!visited.includes(`${[row - 1, col]}`)) {
+      if (row > 0 && words[row - 1][col] === word[searchIndex] && !visited.includes(`${[row - 1, col]}`)) {
           adjList.push([row - 1, col]);
-        }
       }
-    }
     //right
-    if (col < words[row].length - 1) {
-      if (words[row][col + 1] === word[searchIndex]) {
-        if (!visited.includes(`${[row, col + 1]}`)) {
+      if (col < words[row].length - 1 && words[row][col + 1] === word[searchIndex] && !visited.includes(`${[row, col + 1]}`)) {
           adjList.push([row, col + 1]);
-        }
       }
-    }
     //bottom
-    if (row < words.length - 1) {
-      if (words[row + 1][col] === word[searchIndex]) {
-        if (!visited.includes(`${[row + 1, col]}`)) {
+      if (row < words.length - 1 && words[row + 1][col] === word[searchIndex] && !visited.includes(`${[row + 1, col]}`)) {
           adjList.push([row + 1, col]);
-        }
       }
-    }
     //left
-    if (col > 0) {
-      if (words[row][col - 1] === word[searchIndex]) {
-        if (!visited.includes(`${[row, col - 1]}`)) {
+      if (col > 0 && words[row][col - 1] === word[searchIndex] && !visited.includes(`${[row, col - 1]}`)) {
           adjList.push([row, col - 1]);
-        }
       }
-    }
     return adjList;
   }
   
@@ -60,14 +44,14 @@ function wordSearch(words, word) {
     while (!status && arr.length !== 0) {
       let temp = arr.shift();
       visited.push(`${temp}`);
-      if (visited.length === word.length) {
-        status = true;
-        break;
-      }
       let diffArr = checkNeighbours(...temp, searchIndex);
       if (diffArr.length === 0) {
 		visited.pop();
         continue;
+      }
+      if (visited.length === word.length-1) {
+        status = true;
+        break;
       }
       find(diffArr);
     }
