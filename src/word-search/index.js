@@ -46,61 +46,61 @@ function wordSearch(words, word) {
   visited.push(wordIndex[0]); //initialize visited with first index array
 
   while (i < visited.length) {
-    let row_index = visited[i][0];
-    let col_index = visited[i][1];
+    let rowIndex = visited[i][0];
+    let colIndex = visited[i][1];
 
-    let right_ajacent_index = [row_index, col_index + 1];
-    let bottom_ajacent_index = [row_index + 1, col_index];
-    let left_ajacent_index = [row_index, col_index - 1];
-    let top_ajacent_index = [row_index - 1, col_index];
+    let rightAdjacentIndex = [rowIndex, colIndex + 1];
+    let bottomAdjacentIndex = [rowIndex + 1, colIndex];
+    let leftAdjacentIndex = [rowIndex, colIndex - 1];
+    let topAdjacentIndex = [rowIndex - 1, colIndex];
 
     for (let x = 0; x < wordIndex.length; x++) {
       if (
-        JSON.stringify(wordIndex[x]) === JSON.stringify(right_ajacent_index) &&
+        JSON.stringify(wordIndex[x]) === JSON.stringify(rightAdjacentIndex) &&
         visited.every(
-          (e) => JSON.stringify(e) !== JSON.stringify(right_ajacent_index)
+          (e) => JSON.stringify(e) !== JSON.stringify(rightAdjacentIndex)
         )
       ) {
-        visited.push(right_ajacent_index);
+        visited.push(rightAdjacentIndex);
       }
       if (
-        JSON.stringify(wordIndex[x]) === JSON.stringify(bottom_ajacent_index) &&
+        JSON.stringify(wordIndex[x]) === JSON.stringify(bottomAdjacentIndex) &&
         visited.every(
-          (e) => JSON.stringify(e) !== JSON.stringify(bottom_ajacent_index)
+          (e) => JSON.stringify(e) !== JSON.stringify(bottomAdjacentIndex)
         )
       ) {
-        visited.push(bottom_ajacent_index);
+        visited.push(bottomAdjacentIndex);
       }
       if (
-        JSON.stringify(wordIndex[x]) == JSON.stringify(left_ajacent_index) &&
+        JSON.stringify(wordIndex[x]) == JSON.stringify(leftAdjacentIndex) &&
         visited.every(
-          (e) => JSON.stringify(e) !== JSON.stringify(left_ajacent_index)
+          (e) => JSON.stringify(e) !== JSON.stringify(leftAdjacentIndex)
         )
       ) {
-        visited.push(left_ajacent_index);
+        visited.push(leftAdjacentIndex);
       }
       if (
-        JSON.stringify(wordIndex[x]) === JSON.stringify(top_ajacent_index) &&
+        JSON.stringify(wordIndex[x]) === JSON.stringify(topAdjacentIndex) &&
         visited.every(
-          (e) => JSON.stringify(e) !== JSON.stringify(top_ajacent_index)
+          (e) => JSON.stringify(e) !== JSON.stringify(topAdjacentIndex)
         )
       ) {
-        visited.push(top_ajacent_index);
+        visited.push(topAdjacentIndex);
       }
     }
 
     i += 1;
   }
 
-  let alphabet_pos_visited = [];
+  let alphabetPosVisited = [];
 
   for (let j = 0; j < visited.length; j++) {
-    alphabet_pos_visited.push(words[visited[j][0]][visited[j][1]]);
+    alphabetPosVisited.push(words[visited[j][0]][visited[j][1]]);
   }
 
   let count = 0;
   for (let w = 0; w < word.length; w++) {
-    if (alphabet_pos_visited.includes(word[w])) {
+    if (alphabetPosVisited.includes(word[w])) {
       count += 1;
     }
   }
