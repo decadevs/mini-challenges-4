@@ -1,49 +1,53 @@
-function wordSearch(words, word) {
-  if ((words.length  || word.length) == 0 ) {
-   return false
-  }
-  let wordArr = word.split(''); 
-  let stepLetterInWord = wordArr[0]; stepLetterInWord
-  pass=[]
-  
-  for (row in words) {
-    for (col in words[row]) { 
-      let currentStepInWords = words[row][col]
-      if (currentStepInWords == stepLetterInWord) {
-        words[row][col] = "";
-        
-        check(words, wordArr, row, col)
-      }
+function wordSearch(board, word) {
+    let m = board.length;
+    let n = board[0].length;
+
+    let result = false;
+    for(let i = 0; i < m; i++){
+        for(let j = 0; j < n; j++){
+           if(dfs(board, word, i, j, 0)){
+               result = true;
+           }
+        }
     }
-  }
-  // console.log(pass.join(''))
-  // if(word === pass.join('')) return true
-  return false
+
+    return result;
 }
 
-function check(words, wordArr, row, col) {
-  if (words[row] == undefined || words[row][col] == undefined || words[row][col] == "" ) {
-    return false
-  }
+function dfs(board, word, i, j, k){
+    let m = board.length;
+    let n = board[0].length;
 
-  wordArr.shift();
-  
-  stepLetterInWord = wordArr[0]
-  if (words[row][col] == stepLetterInWord) {
-    words[row][col] = "";
-  }
-  console.log(words);
-  
-  
+    if(i < 0 || j < 0 || i >= m || j >= n){
+        return false;
+    }
 
-  check(words, wordArr, row + 1, col)
-  check(words, wordArr, row - 1, col)
-  check(words, wordArr, row, col + 1)
-  check(words, wordArr, row, col - 1)
+    if(board[i][j] == word.charAt(k)){
+        let temp = board[i][j];
+        board[i][j]='#';
+        if(k==word.length - 1){
+            return true;
+        }else if(dfs(board, word, i-1, j, k+1)
+        ||dfs(board, word, i+1, j, k+1)
+        ||dfs(board, word, i, j-1, k+1)
+        ||dfs(board, word, i, j+1, k+1)){
+            return true;
+        }
+        board[i][j]=temp;
+    }
 
-  return true
-
+    return false;
 }
+
+console.log(wordSearch(
+[
+    ["C", "A", "A"],
+    ["A", "A", "A"],
+    ["B", "C", "D"],
+],
+
+  "AAB"
+));
 
 
 console.log(
@@ -68,34 +72,34 @@ console.log(
 );
 
 
-// console.log(
-//   wordSearch([
-//   ["C", "D", "Y", "C", "X"],
-//   ["A", "N", "Y", "Z", "X"],
-//   ["T", "F", "Z", "A", "T"],
-//   ["M", "D", "B", "U", "T"],
-//   ],
-//     "CAT")
-// );
+console.log(
+  wordSearch([
+  ["C", "D", "Y", "C", "X"],
+  ["A", "N", "Y", "Z", "X"],
+  ["T", "F", "Z", "A", "T"],
+  ["M", "D", "B", "U", "T"],
+  ],
+    "CAT")
+);
 
-//   // should be true
+  // should be true
 
-// console.log(wordSearch([
-//     ["O", "A", "V", "P", "Z"],
-//     ["H", "S", "I", "F", "X"],
-//     ["T", "M", "A", "K", "K"],
-//     ["S", "U", "B", "E", "Y"],
-//   ], "FISH"));
+console.log(wordSearch([
+    ["O", "A", "V", "P", "Z"],
+    ["H", "S", "I", "F", "X"],
+    ["T", "M", "A", "K", "K"],
+    ["S", "U", "B", "E", "Y"],
+  ], "FISH"));
 
 
-// console.log(wordSearch([
-//   ["D", "S", "A", "N", "C"],
-//   ["I", "N", "O", "I", "T"],
-//   ["T", "A", "T", "R", "O"],
-//   ["M", "F", "O", "U", "T"],
-// ],
+console.log(wordSearch([
+  ["D", "S", "A", "N", "C"],
+  ["I", "N", "O", "I", "T"],
+  ["T", "A", "T", "R", "O"],
+  ["M", "F", "O", "U", "T"],
+],
 
-//   "SANCTIONS"));
+  "SANCTIONS"));
 
 
 
