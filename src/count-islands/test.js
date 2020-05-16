@@ -25,10 +25,10 @@ describe("Count Islands", () => {
 
   test("4x4 island", () => {
     const grid = [
-        [1, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1],
-        [0, 1, 0, 0],
+      [1, 1, 0, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 1],
+      [0, 1, 0, 0],
     ];
 
     expect(countIslands(grid)).toBe(4);
@@ -132,5 +132,19 @@ describe("Count Islands", () => {
     ];
 
     expect(countIslands(grid)).toBe(10);
+  });
+
+  test("Horizontal misplaced characters", () => {
+    const words = [["A", "S", "A"]];
+    const word = "SAA";
+
+    expect(wordSearch(words, word)).toBe(false);
+  });
+
+  test("Vertical misplaced characters", () => {
+    const words = [["B"], ["A"], ["C"]];
+    const word = "ABC";
+
+    expect(wordSearch(words, word)).toBe(false);
   });
 });
