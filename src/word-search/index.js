@@ -19,12 +19,12 @@ function wordSearch(words, word) {
 
     // helper function
     function depthSearch(row, col, wordIndexCount, queue) {
-        if(wordIndexCount === WORD_LEN) {
+        if(words[row][col] !== word[wordIndexCount] || isArrayInArray(queue, [row, col])) {
+            queue.pop();
+            return;
+        } else if (wordIndexCount === WORD_LEN - 1) {
             answer = 1;
-            return;
-        } else if (words[row][col] !== word[wordIndexCount] || isArrayInArray(queue, [row, col])) {
-            queue.pop()
-            return;
+            return
         }
 
         queue.push([row, col])
@@ -62,6 +62,9 @@ function wordSearch(words, word) {
         }
     }
 
+    if (answer) {
+        return true;
+    }
     return false;
 }
 
