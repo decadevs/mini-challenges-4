@@ -6,10 +6,7 @@ function wordSearch(words, word) {
     const ROW_LEN = words.length;
     const COL_LEN = words[0].length;
     const WORD_LEN = word.length;
-    let queue = [];
-    let index;
-    let currentIndex;
-    let wordIndexCount = 0;
+    let queue = []
     let answer = 0;
 
     // helper function
@@ -21,61 +18,51 @@ function wordSearch(words, word) {
     }
 
     // helper function
-    function depthSearch(index, wordIndexCount, queue) {
+    function depthSearch(row, col, wordIndexCount, queue) {
         if(wordIndexCount === WORD_LEN) {
             answer = 1;
             return;
-        }
-        if (words[index[0]][index[1]] !== word[wordIndexCount] || isArrayInArray(queue, index)) {
+        } else if (words[row][col] !== word[wordIndexCount] || isArrayInArray(queue, [row, col])) {
+            queue.pop()
             return;
         }
 
-        queue.push(index);
-        if (index[1] + 1 < COL_LEN) {
-            currentIndex = [index[0], index[1] + 1]
-            depthSearch(currentIndex, wordIndexCount + 1, queue);
+        queue.push([row, col])
+        wordIndexCount++;
+
+        if (col + 1 < COL_LEN) {
+            depthSearch(row, col + 1, wordIndexCount, queue);
         }
 
-        if (index[1] - 1 >= 0) {
-            currentIndex = [index[0], index[1] - 1];
-            depthSearch(currentIndex, wordIndexCount + 1, queue);
+        if (col - 1 >= 0) {
+            depthSearch(row, col - 1, wordIndexCount, queue);
         }
 
-        if (index[0] + 1 < ROW_LEN) {
-            currentIndex = [index[0] + 1, index[1]]
-            depthSearch(currentIndex, wordIndexCount + 1, queue);
+        if (row - 1 >= 0) {
+            depthSearch(row - 1, col, wordIndexCount, queue);
         }
 
-        if (index[0] - 1 >= 0) {
-            currentIndex = [index[0] - 1, index[1]];
-            depthSearch(currentIndex, wordIndexCount + 1, queue);
+        if (row + 1 < ROW_LEN) {
+            depthSearch(row + 1, col, wordIndexCount, queue);
         }
     }
 
 
     for (let i = 0; i < ROW_LEN; i++) {
         for (let j = 0; j < COL_LEN; j++) {
-            if (words[i][j] !== word[wordIndexCount]) {
+            if (words[i][j] !== word[0]) {
                 continue;
             }
-            currentIndex = [i, j];
             queue = [];
-            depthSearch(currentIndex, wordIndexCount, queue);
+            depthSearch(i, j, 0, queue);
 
             if (answer) {
                 return true;
             }
         }
     }
+
     return false;
 }
 
-const words = [
-  ["C", "A", "A"],
-  ["A", "A", "A"],
-  ["B", "C", "D"],
-];
-
-const word = "AAB";
-wordSearch(words, word);
 module.exports = wordSearch;
