@@ -19,7 +19,9 @@ function wordSearch(words, word) {
 
     // helper function
     function depthSearch(row, col, wordIndexCount, queue) {
-        if(words[row][col] !== word[wordIndexCount] || isArrayInArray(queue, [row, col])) {
+        if(col >= COL_LEN || col < 0 || row >= ROW_LEN || row < 0 ) {
+            return;
+        } else if (words[row][col] !== word[wordIndexCount] || isArrayInArray(queue, [row, col])) {
             queue.pop();
             return;
         } else if (wordIndexCount === WORD_LEN - 1) {
@@ -30,21 +32,13 @@ function wordSearch(words, word) {
         queue.push([row, col])
         wordIndexCount++;
 
-        if (col + 1 < COL_LEN) {
-            depthSearch(row, col + 1, wordIndexCount, queue);
-        }
+        depthSearch(row, col + 1, wordIndexCount, queue);
 
-        if (col - 1 >= 0) {
-            depthSearch(row, col - 1, wordIndexCount, queue);
-        }
+        depthSearch(row, col - 1, wordIndexCount, queue);
 
-        if (row - 1 >= 0) {
-            depthSearch(row - 1, col, wordIndexCount, queue);
-        }
+        depthSearch(row - 1, col, wordIndexCount, queue);
 
-        if (row + 1 < ROW_LEN) {
-            depthSearch(row + 1, col, wordIndexCount, queue);
-        }
+        depthSearch(row + 1, col, wordIndexCount, queue);
     }
 
 
