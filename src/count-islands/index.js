@@ -5,33 +5,53 @@
 */
 
 function countIslands(grid) {
+  let gridLength = grid.length;
+  let gridItemLength = grid[0].length;
+  let islandCount = 0;
 
-    let gridLength=grid.length
-    let gridItemLength=grid[0].length
-    let islandCount=0
-    
-    for(let i=0;i<gridLength;i++){
-        for(let j=0;j<gridItemLength;j++){
-            if(grid[i][j]===1){
-                //count the island and begin visit of positive neighbour adjacents to mark as visited
-                islandCount+=1
-                VisitNeighbourAdjacents(grid,i,j)
-            }
-        }
+  if(gridLength===0){
+      return 0
+  }
+
+  for (let i = 0; i < gridLength; i++) {
+    for (let j = 0; j < gridItemLength; j++) {
+      if (grid[i][j] === 1) {
+        //count the island and begin visit of positive neighbour adjacents to mark as visited
+        islandCount += 1;
+        VisitNeighbourAdjacents(grid, i, j);
+        
+      }
     }
+  }
 
-    return islandCount
-
+  return islandCount;
 }
 
-function VisitNeighbourAdjacents(grid,row,col){
-    let gridLength=grid.length
-    if(row<0 || row >= gridLength || col < 0 || col >= grid[0].length || grid[row][col] ===0){
-        return;
-    }
+function VisitNeighbourAdjacents(grid, row, col) {
+  let gridL = grid.length;
+  let gridIL=grid[0].length;
+  if (
+    row===-1 ||
+    row >= gridL ||
+    col ===-1 ||
+    col >= gridIL ||
+    grid[row][col] !==1
+  ) {
+    return
+  }
 
-    grid[row][col]="visited"
+  grid[row][col] = 0;
 
 
+  VisitNeighbourAdjacents(grid,row,col+1); //move to right adjacent neighbour
+  VisitNeighbourAdjacents(grid,row+1,col); //move to bottom adjacent neighbour
+  VisitNeighbourAdjacents(grid,row-1,col);// move to top adjacent neightbour
+  VisitNeighbourAdjacents(grid,row,col-1) //move to left adjacent neighbour
+
+
+  
+
+   //move to right adjacent neighbour
 }
+
 module.exports = countIslands;
