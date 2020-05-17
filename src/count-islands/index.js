@@ -24,4 +24,12 @@ function countIslands(grid) {
 
 }
 
+function VisitNeighbourAdjacents(grid,row,col){
+    let gridLength=grid.length
+    if(row<0 || row >= gridLength || col < 0 || col >= grid[0].length || grid[row][col] ===0){
+        return;
+    }
+
+
+}
 module.exports = countIslands;
