@@ -1,49 +1,52 @@
 function wordSearch(words, word) {
-  let result = false;
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words[0].length; j++) {
+      if (words[i][j] === word[0]) {
+        if (nextChar(0,i,j)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 
-  let splitWord = word.split('');
+  function nextChar(charIndex, rowIndex, colIndex) {
 
-  const nextChar = function (words, rowIndex, colIndex) {
-    if (rowIndex < 0 || rowIndex >= words.length ||
-      colIndex < 0 || colIndex >= words[0].length ||
-      words[rowIndex][colIndex] !== splitWord[0] ||
-      words[rowIndex][colIndex] === "#") {
+    if (charIndex === word.length) {
+      return true;
+    }
+
+    if (!words[rowIndex] || !words[rowIndex][colIndex]) {
         return;
     }
 
-    let removeChar = splitWord.shift();
-    if (splitWord.length == 0) {
-      result = true;
-    }
-
-    else {
-      result = false;
-    }
-
-    words[rowIndex][colIndex] = "#";
-
-    let row = [-1,1,0,0];
-    let col = [0,0,-1,1];
-    for (let k = 0; k < row.length; k++) {
-      nextChar(words, rowIndex + row[k], colIndex + col[k]);
-    }
-    if (result === false) {
-      splitWord.unshift(removeChar);
-    }
+    if (words[rowIndex][colIndex] !== word[charIndex]) {
+      return;
   }
+    if (words[rowIndex][colIndex] !== "#" &&
+      words[rowIndex][colIndex] === word[charIndex]) {
+      words[rowIndex][colIndex] = "#";
 
-  for (let i = 0; i < words.length; i++) {
-    for(let j = 0; j < words[0].length; j++) {
-      if(words[i][j] === splitWord[0] && splitWord[0] === splitWord[1]) {
-        result = true;
+      if (nextChar(charIndex + 1, rowIndex - 1, colIndex)) {
+        return true;
       }
-      else if(words[i][j] === splitWord[0] && splitWord[0] !== splitWord[1]) {
-        nextChar(words,i,j);
+
+      if (nextChar(charIndex + 1, rowIndex + 1, colIndex)) {
+        return true;
       }
-      if (result === true) break;
+
+      if (nextChar(charIndex + 1, rowIndex, colIndex - 1)) {
+        return true;
+      }
+
+      if (nextChar(charIndex + 1, rowIndex, colIndex + 1)) {
+        return true;
+      }
+      
     }
+
+    words[rowIndex][colIndex] = word[charIndex];
   }
-  return result;
 }
 
 module.exports = wordSearch;
