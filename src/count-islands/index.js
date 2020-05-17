@@ -30,6 +30,8 @@ function VisitNeighbourAdjacents(grid,row,col){
         return;
     }
 
+    grid[row][col]="visited"
+
 
 }
 module.exports = countIslands;
