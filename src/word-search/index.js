@@ -37,6 +37,7 @@ function wordSearch(words, word) {
           }else {
             stack.pop()
             checked.push((item))
+            letterIndex -= 1
           }
           if (letterIndex === word.length - 1) {
             return true
