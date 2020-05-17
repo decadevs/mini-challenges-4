@@ -6,6 +6,22 @@
 
 function countIslands(grid) {
 
+    let gridLength=grid.length
+    let gridItemLength=grid[0].length
+    let islandCount=0
+    
+    for(let i=0;i<gridLength;i++){
+        for(let j=0;j<gridItemLength;j++){
+            if(grid[i][j]===1){
+                //count the island and begin visit of positive neighbour adjacents to mark as visited
+                islandCount+=1
+                VisitNeighbourAdjacents(grid,i,j)
+            }
+        }
+    }
+
+    return islandCount
+
 }
 
 module.exports = countIslands;
