@@ -1,6 +1,6 @@
 function countIslands(grid) {
   let count = 0
-  let list = []
+  let list = {}
 
   grid.forEach((element, rootI) => {
     element.forEach((item, childI) => {
