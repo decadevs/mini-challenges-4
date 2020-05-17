@@ -3,6 +3,7 @@ function wordSearch(words, word) {
   for (let row = 0; row < words.length; row++) {
     for (let col = 0; col < words[0].length; col++) {
       if (words[row][col] === word[0]) {
+        stack = [];
         stack.push([row, col]);
         let comparisonString = word[0];
         let wordIndex = 1;
@@ -15,7 +16,7 @@ function wordSearch(words, word) {
             comparisonString += word[wordIndex];
             wordIndex++;
           }
-          if (nodeY - 1 >= 0 && words[nodeX][nodeY - 1] === word[wordIndex] && !visited.includes(nodeX.toString() + (nodeY - 1).toString())) {
+          else if (nodeY - 1 >= 0 && words[nodeX][nodeY - 1] === word[wordIndex] && !visited.includes(nodeX.toString() + (nodeY - 1).toString())) {
             stack.push([nodeX, nodeY - 1]);
             visited.push(nodeX.toString() + (nodeY - 1).toString());
             comparisonString += word[wordIndex];
@@ -35,8 +36,9 @@ function wordSearch(words, word) {
           }
           else {
             stack.pop();
+            wordIndex--;
+            comparisonString = comparisonString.slice(0, -1);
           }
-
         }
         if (comparisonString === word) {
           return true;
