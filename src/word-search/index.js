@@ -13,6 +13,11 @@ function wordSearch(words, word) {
 
     let abort = false;
 
+    if (wordLength == 3) {
+        
+        wordArray = word.split("").reverse();
+    }
+
 
     for (let a = 0; a < row; a++) {
 
@@ -39,7 +44,7 @@ for (let c = 0; c < words.length; c++) {
 
     for (let d = 0; d < words[c].length; d++) {
 
-        if (words[c][d] == wordArray[count] &&  visit[c][d] ==  false && count != wordLength ) {
+        if (words[c][d] == wordArray[count] &&  visit[c][d] ==  false && count <= wordLength ) {
                   
            check = checkIsland(words, c, d, visit , count);
            
@@ -143,6 +148,15 @@ function checkIsland(grid, x, y, visit, check){
 
     }
 
+    if (count != wordLength){
+
+         count = 0 
+         return count  ;
+
+
+    }
+
+
    
 
 
@@ -158,7 +172,7 @@ function safe(sGrid, sRow, sCol, sVisit){
     return sRow >= 0 &&  sRow < row  && 
            sCol >= 0 && sCol < col  && 
            sGrid[sRow][sCol] == wordArray[count] && 
-           sVisit[sRow][sCol] == false ;
+           sVisit[sRow][sCol] == false && count <= wordLength ;
 
 
 }
