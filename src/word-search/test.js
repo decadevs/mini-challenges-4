@@ -120,7 +120,7 @@ describe("Word Search", () => {
 
     const word = "FISH";
 
-    expect(wordSearch(words, word)).toBe(true);
+    expect(wordSearch(words, word)).toBe(true);    
   });
 
   test("You've got the word", () => {
