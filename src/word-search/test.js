@@ -122,41 +122,4 @@ describe("Word Search", () => {
 
     expect(wordSearch(words, word)).toBe(true);    
   });
-  test("You've got the word", () => {
-    const words = [
-      ["C", "A", "A"],
-      ["A", "A", "A"],
-      ["B", "C", "D"],
-    ];
-
-    const word = "AAB";
-
-    expect(wordSearch(words, word)).toBe(true);
-  });
-
-  test("Because you can See", () => {
-    const words = [
-      ["A", "B", "C", "E"],
-      ["S", "F", "C", "S"],
-      ["A", "D", "E", "E"],
-    ];
-
-    const word = "SEE";
-
-    expect(wordSearch(words, word)).toBe(true);
-  });
-
-  test("Horizontal misplaced characters", () => {
-    const words = [["A", "S", "A"]];
-    const word = "SAA";
-
-    expect(wordSearch(words, word)).toBe(false);
-  });
-
-  test("Vertical misplaced characters", () => {
-    const words = [["B"], ["A"], ["C"]];
-    const word = "ABC";
-
-    expect(wordSearch(words, word)).toBe(false);
-  });
 });
