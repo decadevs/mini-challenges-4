@@ -69,9 +69,3 @@ function isVisited(position, visitedPositions){
 
 module.exports = countIslands;
 
-console.log(countIslands([
-    [1, 1, 0, 0, 0],
-    [1, 1, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 1, 1],
-  ]));
