@@ -8,6 +8,10 @@
 6.  Return true if the word was found from any of the Node traversal
 */
 
+var visited=[];
+const wordsFoundInNodes=[];
+
+
 //declare function to get all Nodes from the words grid of the first char 
 function getNodes(words, startOfString) {
   let nodes = [];
@@ -48,5 +52,24 @@ function notVisited(nodePoint,visited) {
 
 
 
-function wordSearch(words, word) {}
+
+function wordSearch(words, word) {
+
+  const nodesGotten=getNodes(words,word[0]);
+  let rowN=0;
+  let colN=0;
+
+  for(let y=0;y<nodesGotten.length;y++){
+    rowN=nodesGotten[y][0];
+    colN=nodesGotten[y][1];
+    wordsFoundInNodes[y]=[];  //to store each nodes traversal as it tends to getting the word been searched
+    visited=[];
+    let nodeHead=[rowN,colN];
+    let startPoint=[rowN,colN];
+    //traverse this current node
+    startTraversalFromNode(nodeHead,startPoint,y,1,words,word)
+  }
+
+
+}
 module.exports = wordSearch;
