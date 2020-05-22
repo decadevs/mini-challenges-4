@@ -21,5 +21,20 @@ function getNodes(words, startOfString) {
   return nodes;
 }
 
+//declare a function to check if current sub index of words is in the bound within the grid
+
+function isInBound(point,words){
+  let wordSize=words.length;
+  let innerWordSize=words[0].length;
+  
+  let row=point[0]
+  let col=point[1]
+  if(row>=wordSize || row < 0 || col >= innerWordSize || col < 0){
+    return false;
+  }
+  return true;
+}
+
+
 function wordSearch(words, word) {}
 module.exports = wordSearch;
