@@ -8,11 +8,10 @@
 6.  Return true if the word was found from any of the Node traversal
 */
 
-var visited=[];
-const wordsFoundInNodes=[];
+var visited = [];
+const wordsFoundInNodes = [];
 
-
-//declare function to get all Nodes from the words grid of the first char 
+//declare function to get all Nodes from the words grid of the first char
 function getNodes(words, startOfString) {
   let nodes = [];
   for (let i = 0; i < words.length; i++) {
@@ -27,49 +26,94 @@ function getNodes(words, startOfString) {
 
 //declare a function to check if current sub index of words is in the bound within the grid
 
-function isInBound(point,words){
-  let wordSize=words.length;
-  let innerWordSize=words[0].length;
-  
-  let row=point[0]
-  let col=point[1]
-  if(row>=wordSize || row < 0 || col >= innerWordSize || col < 0){
+function isInBound(point, words) {
+  let wordSize = words.length;
+  let innerWordSize = words[0].length;
+
+  let row = point[0];
+  let col = point[1];
+  if (row >= wordSize || row < 0 || col >= innerWordSize || col < 0) {
     return false;
   }
   return true;
 }
 
 //function to check if the selected character index in the words grid have not been selected
-function notVisited(nodePoint,visited) {
-  let isNotVisited=visited.every((item)=>JSON.stringify(item)!==JSON.stringify(nodePoint))
-  
-  if(isNotVisited){
+function notVisited(nodePoint, visited) {
+  let isNotVisited = visited.every(
+    (item) => JSON.stringify(item) !== JSON.stringify(nodePoint)
+  );
+
+  if (isNotVisited) {
     return true;
   }
   return false;
 }
 
-
-
-
-
 function wordSearch(words, word) {
+  const nodesGotten = getNodes(words, word[0]);
+  let rowN = 0;
+  let colN = 0;
 
-  const nodesGotten=getNodes(words,word[0]);
-  let rowN=0;
-  let colN=0;
-
-  for(let y=0;y<nodesGotten.length;y++){
-    rowN=nodesGotten[y][0];
-    colN=nodesGotten[y][1];
-    wordsFoundInNodes[y]=[];  //to store each nodes traversal as it tends to getting the word been searched
-    visited=[];
-    let nodeHead=[rowN,colN];
-    let startPoint=[rowN,colN];
+  for (let y = 0; y < nodesGotten.length; y++) {
+    rowN = nodesGotten[y][0];
+    colN = nodesGotten[y][1];
+    wordsFoundInNodes[y] = []; //to store each nodes traversal as it tends to getting the word been searched
+    visited = [];
+    let nodeHead = [rowN, colN];
+    let startPoint = [rowN, colN];
     //traverse this current node
-    startTraversalFromNode(nodeHead,startPoint,y,1,words,word)
+    startTraversalFromNode(nodeHead, startPoint, y, 1, words, word);
+  }
+}
+
+function startTraversalFromNode(
+  nodeHead,
+  startPoint,
+  nodePoint,
+  count,
+  words,
+  word
+) {
+  if (startPoint.length === 0) {
+    return; //take care of when it does not find char to match the word after it had traversed the adjacent
   }
 
+  let row = startPoint[0];
+  let col = startPoint[1];
+  let queueWord = words[row][col];
+
+  //save the queue in the wordsFoundInNodes so as to start traversing its adjacent recursively
+  wordsFoundInNodes[nodePoint].push(queueWord);
+
+  //mark the current item as visited
+  visited.push([row, col]);
+
+  let nextWord = word[count];
+
+  //make startPoint to be zero, so we update it after the nextWord been found around the adjacents
+  startPoint.length = 0;
+
+  //check if the traversals are in bound, equal to the next word and note visited
+  if(isInBound([row,col+1],words) && words[row][col+1]===nextWord && notVisited([row,col +1],visited)){
+
+    //if this is true, traverse again from this current found word
+    startTraversalFromNode(nodeHead,[row,col+1],nodePoint,count+1,words,word)
+  }
+  
+  if(isInBound([row+1,col],words) && words[row+1][col]===nextWord && notVisited([row+1,col],visited)){
+    startTraversalFromNode(nodeHead,[row+1,col],nodePoint,count+1,words,word)
+  }
+
+  if(isInBound([row,col-1],words) && words[row][col-1]===nextWord && notVisited([row,col-1],visited)){
+    startTraversalFromNode(nodeHead,[row,col-1],nodePoint,count+1,words,word)
+  }
+
+  if(isInBound([row-1,col],words) && words[row-1][col]===nextWord && notVisited([row-1,col],visited)){
+    startTraversalFromNode(nodeHead,[row-1,col],nodePoint,count+1,words,word)
+  }
+
+  
 
 }
 module.exports = wordSearch;
