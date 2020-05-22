@@ -75,7 +75,6 @@ function countIslands(grid) {
 
         return sRow >= 0 &&  sRow < row  && sCol >= 0 && sCol < col  && sGrid[sRow][sCol] ==1 && sVisit[sRow][sCol] == false;
 
-
     }
  
 }
