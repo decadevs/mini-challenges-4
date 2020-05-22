@@ -65,6 +65,16 @@ function wordSearch(words, word) {
     //traverse this current node
     startTraversalFromNode(nodeHead, startPoint, y, 1, words, word);
   }
+
+  //check if the length of node is same with its occurence in words
+
+  let countNodeExistenceInWord=word.split('').filter(eachChar=>eachChar===word[0])
+  if(countNodeExistenceInWord.length>nodesGotten.length){
+    return false
+  }
+
+  
+
 }
 
 function startTraversalFromNode(
