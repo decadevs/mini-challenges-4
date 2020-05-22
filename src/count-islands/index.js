@@ -1,6 +1,5 @@
 function countIslands(grid) {
 
-
     let row = grid.length;
     let col= grid[0].length;
     let visit =  [];
@@ -10,21 +9,15 @@ function countIslands(grid) {
 
             visit[a] = [];
         
-        
     }
     
 
     for (let i = 0; i < grid.length; i++) {
-       
-
         for (let j = 0; j < grid[i].length; j++) {
 
             visit[i][j] = false;
             
-
-            
         }
-
         
     }
 
@@ -38,19 +31,8 @@ function countIslands(grid) {
                 checkIsland(grid , c, d, visit);
 
                 count = count + 1;
-
-
-                
-            }
-           
-
-
-
-            
-        }
-        
-
-
+            }    
+        }        
         
     }
 
@@ -68,12 +50,7 @@ function countIslands(grid) {
             
         }
 
-    
-
-        
-       
-
-        
+     
         if (safe(grid, x, y+1, visit)) {
 
             checkIsland(grid, x, y+1, visit);
@@ -92,11 +69,6 @@ function countIslands(grid) {
             
         }
 
-    
-
-
-
-
     }
 
    function safe(sGrid, sRow, sCol, sVisit){
@@ -105,9 +77,6 @@ function countIslands(grid) {
 
 
     }
-
-
-
  
 }
 
