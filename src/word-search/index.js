@@ -58,6 +58,7 @@ function wordSearch(words, word) {
   for (let y = 0; y < nodesGotten.length; y++) {
     rowN = nodesGotten[y][0];
     colN = nodesGotten[y][1];
+    let responseIfWordFoundInAnyNode=false
     wordsFoundInNodes[y] = []; //to store each nodes traversal as it tends to getting the word been searched
     visited = [];
     let nodeHead = [rowN, colN];
@@ -73,8 +74,19 @@ function wordSearch(words, word) {
     return false
   }
 
-  
+  for(let j=0;j<wordsFoundInNodes.length;j++){
+    let wordInOneOfNode = wordsFoundInNodes[j].join('').includes(word)
+    if(wordInOneOfNode===true){
+      responseIfWordFoundInAnyNode=true
+    }
+  }
 
+  if(responseIfWordFoundInAnyNode===true){
+    return true
+  }
+  else{
+    return false
+  }
 }
 
 function startTraversalFromNode(
