@@ -54,11 +54,10 @@ function wordSearch(words, word) {
   const nodesGotten = getNodes(words, word[0]);
   let rowN = 0;
   let colN = 0;
-
+  let responseIfWordFoundInAnyNode = false;
   for (let y = 0; y < nodesGotten.length; y++) {
     rowN = nodesGotten[y][0];
     colN = nodesGotten[y][1];
-    let responseIfWordFoundInAnyNode=false
     wordsFoundInNodes[y] = []; //to store each nodes traversal as it tends to getting the word been searched
     visited = [];
     let nodeHead = [rowN, colN];
