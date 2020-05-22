@@ -35,6 +35,18 @@ function isInBound(point,words){
   return true;
 }
 
+//function to check if the selected character index in the words grid have not been selected
+function notVisited(nodePoint,visited) {
+  let isNotVisited=visited.every((item)=>JSON.stringify(item)!==JSON.stringify(nodePoint))
+  
+  if(isNotVisited){
+    return true;
+  }
+  return false;
+}
+
+
+
 
 function wordSearch(words, word) {}
 module.exports = wordSearch;
