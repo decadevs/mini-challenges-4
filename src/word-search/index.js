@@ -113,6 +113,10 @@ function startTraversalFromNode(
     startTraversalFromNode(nodeHead,[row-1,col],nodePoint,count+1,words,word)
   }
 
+  //re-load the traversal with initial node head if it fails to find next words along the way from the current adjacent
+  //it was traversing recursively from
+
+  startTraversalFromNode(nodeHead,(startPoint=nodeHead),nodePoint,1,words,word);
   
 
 }
