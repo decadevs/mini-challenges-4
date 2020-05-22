@@ -8,9 +8,18 @@
 6.  Return true if the word was found from any of the Node traversal
 */
 
-
-function wordSearch(words, word) {
-
-
+//declare function to get all Nodes from the words grid of the first char 
+function getNodes(words, startOfString) {
+  let nodes = [];
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words[0].length; j++) {
+      if (words[i][j] === startOfString) {
+        nodes.push([i, j]);
+      }
+    }
+  }
+  return nodes;
 }
+
+function wordSearch(words, word) {}
 module.exports = wordSearch;
