@@ -6,7 +6,6 @@ function wordSearch(words, word) {
     let wordLength =  word.length;
     let wordArray = word.split("");
     let check ;
-
     let abort = false;
 
     if (wordLength == 3) {
@@ -26,9 +25,7 @@ for (let i = 0; i < words.length; i++) {
 
         visit[i][j] = false; 
         
-    }
-
-    
+    }   
 }
 
 
@@ -52,7 +49,6 @@ for (let c = 0; c < words.length; c++) {
 
             count = 0;
         }
-
 
         if (abort == true){
 
@@ -111,20 +107,15 @@ function checkIsland(grid, x, y, visit, check){
     if (count == wordLength){
 
         return count ;
-
-
     }
 
     if (count != wordLength){
 
          count = 0 
          return count  ;
-
-
     }
 
 }
-
 
         function safe(sGrid, sRow, sCol, sVisit){
 
@@ -135,8 +126,6 @@ function checkIsland(grid, x, y, visit, check){
 
 
         }
-
-
 
 }
 
