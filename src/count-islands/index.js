@@ -9,7 +9,6 @@ function traverseMaze(grid, i, j) {
     return;
   }
   grid[i][j] = "🏃";
-  console.log(grid);
 
   traverseMaze(grid, i, j + 1);
   traverseMaze(grid, i, j - 1);
@@ -18,8 +17,9 @@ function traverseMaze(grid, i, j) {
 
   return true;
 }
-let count = 0;
 function countIslands(grid) {
+  let count = 0;
+
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
       if (grid[i][j] === 1 && traverseMaze(grid, i, j)) {
