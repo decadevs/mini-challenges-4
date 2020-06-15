@@ -25,7 +25,7 @@ function countIslands(grid) {
       return 0;
     };
 
-    grid[row][col] = "#";
+    grid[row][col] = 0;
 
     checkingForIsland(grid, row + 1, col)
     checkingForIsland(grid, row - 1, col)
