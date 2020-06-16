@@ -35,6 +35,8 @@ function wordSearch(board, word) {
       if(checkNext(board,word, row, col+1, wordCharIndex+1, wordComparator)){
         return true;
       }
+    
+     board[row][col]=word[wordCharIndex]
 
   }
 module.exports = wordSearch;
