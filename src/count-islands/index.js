@@ -1,19 +1,19 @@
 const countIslands = grid => {
 
   // Destroy the islands
-  const purgeIslandsFound = (i, j) => {
+  const purgeIslandsFound = (row, col) => {
     // Base case
-    if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] == 0) {
+    if (row < 0 || col < 0 || row >= grid.length || col >= grid[row].length || grid[row][col] == 0) {
       return;
     }
-    // mark as visited or purger
-    grid[i][j] = 0;
+    // mark as visited
+    grid[row][col] = 0;
 
     // Recursive case for neighbours
-    purgeIslandsFound(i - 1, j); //up
-    purgIslandsFound(i + 1, j); //down
-    purgeIslandsFound(i, j - 1); //left
-    purgeIslandsFound(i, j + 1); //down
+    purgeIslandsFound(row - 1, col); //up
+    purgeIslandsFound(row + 1, col); //down
+    purgeIslandsFound(row, col - 1); //left
+    purgeIslandsFound(row, col + 1); //down
   }
 
   // Check for islands in each grids
