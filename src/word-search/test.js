@@ -92,7 +92,7 @@ describe("Word Search", () => {
 
     const word = "BATMAN";
 
-    expect(wordSearch(words, word)).toBe(false);
+    expect(wordSearch(words, word)).toBe(true);
   });
 
   test("Write good grammar", () => {
