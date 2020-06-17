@@ -14,14 +14,12 @@ function wordSearch(words, word) {
     if(index === word.length) return true
     if(!words[x] || !words[x][y]) return false
     if(words[x][y] !== "#" && words[x][y] === word[index]) {
-      let ch = words[x][y]
       words[x][y] = "#"
 
       if(search(index + 1, x - 1, y)) return true
       if(search(index + 1, x + 1, y)) return true
       if(search(index + 1, x, y - 1)) return true
       if(search(index + 1, x, y + 1)) return true
-      words[x][y] = ch
     }
     return false
   }
