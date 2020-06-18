@@ -1,27 +1,39 @@
 function countIslands(grid) {
 
-    let count = 0;
 
+    if (grid == "" || grid.length == 0) {
+        return;
+    }
+    let counter = 0;
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i][j] === 1) {
+                marker(grid, i, j)
+                counter++;
 
-    const graph = new Graph(grid);
-
-
-
-    const visited = new Array(graph.numRow).fill(false)
-        .map(() => new Array(graph.numCol).fill(false));
-
-
-    for (let i = 0; i < graph.numRow; i++) {
-        for (let j = 0; j < graph.numCol; j++) {
-
-            if (!visited[i][j] && graph.matrix[i][j] === 1) {
-                graph.dfs(i, j, visited);
-                count++;
             }
         }
     }
 
-    return count;
+
+    function marker(grid, i, j) {
+        if (i < 0 || i > grid.length - 1 || j < 0 || j > grid[i].length - 1) {
+            return;
+        }
+
+        if (grid[i][j] == 0) {
+            return;
+        }
+
+        grid[i][j] = 0;
+
+        marker(grid, i, j - 1);
+        marker(grid, i, j + 1);
+        marker(grid, i - 1, j);
+        marker(grid, i + 1, j);
+
+    }
+    return counter;
 }
 
 module.exports = countIslands;

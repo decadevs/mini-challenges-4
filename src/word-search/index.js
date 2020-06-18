@@ -1,27 +1,27 @@
 function wordSearch(words, word) {
     if (word === "") return true;
 
-    for (var row = 0; row < words.length; row++) {
-        for (var col = 0; col < words[row].length; col++) {
-            if (words[row][col] === word[0]) {
-                if (dfs(0, row, col)) return true;
+    for (let i = 0; i < words.length; i++) {
+        for (let j = 0; j < words[i].length; j++) {
+            if (words[i][j] === word[0]) {
+                if (found(0, i, j)) return true;
             }
         }
     }
     return false;
 
-    function dfs(index, x, y) {
+    function found(index, i, j) {
         if (index === word.length) return true;
-        if (!words[x] || !words[x][y]) return false;
-        if (words[x][y] !== ' ' && words[x][y] === word[index]) {
-            var ch = words[x][y];
-            words[x][y] = ' ';
+        if (!words[i] || !words[i][j]) return false;
+        if (words[i][j] !== "" && words[i][j] === word[index]) {
+            let char = words[i][j];
+            words[i][j] = "";
 
-            if (dfs(index + 1, x - 1, y)) return true; //up
-            if (dfs(index + 1, x + 1, y)) return true; //down
-            if (dfs(index + 1, x, y - 1)) return true; //left
-            if (dfs(index + 1, x, y + 1)) return true; //right
-            words[x][y] = ch; // backtracking
+            if (found(index + 1, i - 1, j)) return true;
+            if (found(index + 1, i + 1, j)) return true;
+            if (found(index + 1, i, j - 1)) return true;
+            if (found(index + 1, i, j + 1)) return true;
+            words[i][j] = char;
         }
         return false;
     }
