@@ -22,27 +22,15 @@ function wordSearch(words, word) {
 
     if (words[rowIndex][colIndex] !== word[charIndex]) {
       return;
-  }
+    }
     if (words[rowIndex][colIndex] !== "#" &&
       words[rowIndex][colIndex] === word[charIndex]) {
       words[rowIndex][colIndex] = "#";
 
-      if (nextChar(charIndex + 1, rowIndex - 1, colIndex)) {
-        return true;
-      }
-
-      if (nextChar(charIndex + 1, rowIndex + 1, colIndex)) {
-        return true;
-      }
-
-      if (nextChar(charIndex + 1, rowIndex, colIndex - 1)) {
-        return true;
-      }
-
-      if (nextChar(charIndex + 1, rowIndex, colIndex + 1)) {
-        return true;
-      }
-      
+      if (nextChar(charIndex + 1, rowIndex - 1, colIndex)) {return true;}
+      if (nextChar(charIndex + 1, rowIndex + 1, colIndex)) {return true;}
+      if (nextChar(charIndex + 1, rowIndex, colIndex - 1)) {return true;}
+      if (nextChar(charIndex + 1, rowIndex, colIndex + 1)) {return true;}
     }
 
     words[rowIndex][colIndex] = word[charIndex];
