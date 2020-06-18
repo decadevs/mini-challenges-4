@@ -10,6 +10,7 @@ const countIslands = (grid) => {
           return successfulScout;
         }
     }
+    
     for (let i = 0; i < numOfRows; i++) {
         for (let j = 0; j < grid[i].length; j++) {
   
