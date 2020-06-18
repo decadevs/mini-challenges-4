@@ -15,7 +15,6 @@ function wordSearch(words, word) {
   return found;
 
   function deptSearch(graph, valueX, valueY, index) {
-    //graph[valueX][valueY] = "_";
 
     if (!JSON.stringify(visited).includes([valueX, valueY])) {
       visited.push([valueX, valueY]);
@@ -66,6 +65,6 @@ function wordSearch(words, word) {
       }
     }
   }
-  //
+  
 }
 module.exports = wordSearch;
