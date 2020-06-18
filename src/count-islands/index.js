@@ -3,7 +3,7 @@ function countIslands(grid) {
   let visited = new Map();
   for (let row = 0; row < grid.length; row++) {
     for (let column = 0; column < grid[row].length; column++) {
-      if (grid[row][column] === 1  && !visited.has([row,column])) {
+      if (grid[row][column] === 1) {
         cycles++;
         deptSearch(grid, row, column);
       }
@@ -14,7 +14,6 @@ function countIslands(grid) {
 
   function deptSearch(graph, valueX, valueY) {
     graph[valueX][valueY] = '_'  
-    visited.set([valueX, valueY], "visited");
     
     if (valueX + 1 < graph.length) {
       //neigbour below
