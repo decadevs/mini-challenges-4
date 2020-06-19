@@ -10,16 +10,16 @@ function wordSearch(words, word) {
   }
   return false
 
-  function search(index, x, y) {
+  function search(index, row1, col1) {
     if(index === word.length) return true
-    if(!words[x] || !words[x][y]) return false
-    if(words[x][y] !== "#" && words[x][y] === word[index]) {
-      words[x][y] = "#"
+    if(!words[row1] || !words[row1][col1]) return false
+    if(words[row1][col1] !== "#" && words[row1][col1] === word[index]) {
+      words[row1][col1] = "#"
 
-      if(search(index + 1, x - 1, y)) return true
-      if(search(index + 1, x + 1, y)) return true
-      if(search(index + 1, x, y - 1)) return true
-      if(search(index + 1, x, y + 1)) return true
+      if(search(index + 1, row1 - 1, col1)) return true
+      if(search(index + 1, row1 + 1, col1)) return true
+      if(search(index + 1, row1, col1 - 1)) return true
+      if(search(index + 1, row1, col1 + 1)) return true
     }
     return false
   }
