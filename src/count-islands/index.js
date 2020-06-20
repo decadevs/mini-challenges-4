@@ -7,7 +7,7 @@ function countIslands(grid) {
     for(let row=0; row<matrix.length; row++){
       for(let column=0; column<matrix[row].length; column++){
         if(matrix[row][column]==1){
-          inlandRecord++;
+          inlandRecorder++;
           checkDryLand(matrix,row,column);
         }
       }
