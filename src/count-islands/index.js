@@ -1,40 +1,47 @@
 function countIslands(grid) {
-  if (grid.length === 0 || grid === null) {
-    return 0
-  };
-
-  let islandCounter = 0;
-
-  for (let row = 0; row < grid.length; row++) {
-    for (let col = 0; col < grid[row].length; col++) {
-
-      if (grid[row][col] === 1) {
-        islandCounter++;
-
-        checkingForIsland(grid, row, col)
+  //This function directs every activities that goes on here. it calls the checkDreyLand function,
+  //which searches for inland, gives it the axis of the point to start seach from and collects
+  //feedback from it.
+  function manager(matrix){
+    let inlandRecorder=0;
+    for(let row=0; row<matrix.length; row++){
+      for(let column=0; column<matrix[row].length; column++){
+        if(matrix[row][column]==1){
+          inlandRecord++;
+          checkDryLand(matrix,row,column);
+        }
       }
     }
-  };
-  return islandCounter
-  };
-
-
-  function checkingForIsland(grid, row, col) {
-
-    if (grid[row] === undefined || grid[row][col] === undefined || grid[row][col] === 0) {
-      return 0;
-    };
-
-    grid[row][col] = 0;
-
-    checkingForIsland(grid, row + 1, col)
-    checkingForIsland(grid, row - 1, col)
-    checkingForIsland(grid, row, col + 1)
-    checkingForIsland(grid, row, col - 1)
-
-    return;
+    return inlandRecorder;
+  }
+  //This function searches for island by checking adjacent element(land) and equating it to zero
+  //if 1 or ignors if zero.
+  function checkDryLand(matrix,axisX,axisY){
+     //checking adjacent up
+    if(axisX+1<=matrix.length && matrix[axisX+1]!==undefined && matrix[axisX+1][axisY]==1){
+      matrix[axisX+1][axisY]=0;
+      checkDryLand(matrix,axisX+1,axisY);
+    }
+    //checking adjacent down
+    if(axisX-1>=0 &&  matrix[axisX-1]!==undefined && matrix[axisX-1][axisY]==1){
+      matrix[axisX-1][axisY]=0;
+      checkDryLand(matrix,axisX-1,axisY);
+    }
+    //checking adjacent left
+    if(axisY-1>=0 && matrix[axisX][axisY-1]!=undefined && matrix[axisX][axisY-1]==1){
+      matrix[axisX][axisY-1]=0;
+      checkDryLand(matrix,axisX,axisY-1);
+    }
+    //checking adjacent right
+    if(axisY+1<=matrix[0].length && matrix[axisX][axisY+1]!=undefined && matrix[axisX][axisY+1]==1){
+      matrix[axisX][axisY+1]=0;
+      checkDryLand(matrix,axisX,axisY+1);
+    }
+    return "Thank you";
+  }
+  //the manager is done and about to return result to the company owner(i.e countIsland). Always remember
+  //that the compant owner(countIsland) reports it the creator. Which is YOU...
+  return manager(grid);
 }
 
 module.exports = countIslands;
-
-
