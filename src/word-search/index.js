@@ -1,8 +1,8 @@
 function wordSearch(words, word){
 
-  //this function searches for all the index positions(rows and columns) of the first character
-  //of the "word" and store them as two sets of arrays(rowIndex and colIndex) inside an object
-  //and return the object. These positions are the starting points to searching from.
+  //This function searches for all the index positions(rows and columns) of the first character
+  //of "word" in "words" and stores them as two sets of array(rowIndex and colIndex) inside an object
+  //and return the object. These positions are the starting points for each respective search.
   function searchIndex(words,word){
     let rowIndex=[];
     let colIndex=[];
@@ -20,12 +20,12 @@ function wordSearch(words, word){
   //This is the manager, the controller general. As the name implies, it controls every activities
   //that is to take place. It calls the searchIndex function, collects feedback, and calls the
   //CheckNextChar function. it tells the checkNextChar funtion where to start its search from,
-  //collects feedback from checkNextChar which it uses to determin the next action. The next
+  //collects feedback from checkNextChar which it uses to figure out the next action. The next
   //action could be to make another search using another starting point(that is if the "word" was
   //not found) or to return "true"(if the word was found) or to return "false"(if the starting
   //points have been used up).
   //NOTE THAT THE "manager" REPORTS TO THE COMPANY OWNER WHICH IS THE "wordSearch". ABOVE ALL,
-  //THEY ALL REPORT TO THEIR GOD WHICH "YOOOU"...
+  //THEY ALL REPORT TO THEIR GOD WHICH IS "YOOOU"...
 
   function manager(search){
     let indexr=search.rowPosition;
@@ -76,6 +76,7 @@ function wordSearch(words, word){
     }
     return 0;
   }
+  //manager reporting(giving final report)
   return manager(searchIndex(words,word));
 }
 module.exports = wordSearch;
