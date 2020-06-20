@@ -2,46 +2,42 @@
 - use recursion method (method that calls itself)
 - use depth first search
 
-
-- if there are no words return false;
 - the first loop i will be used to keep track of the outer loop i.e. the rows
 - the second loop j will be used to keep track of the inner loop i.e. the columns
-- if the grid at any point has the letters it should push to the variable;
-
-- figure out how to keep track of the word search
-  - modify?
+- if the letters in the words at any point is equal to the word it should return true
+- keep track of the word search by marking letters as visited once we've iterated over it
+  - 
 */
 
 function wordSearch(words, word) {
-    let rows = words.length
-    let columns = words[0].length
-    if (word === '') return false;
+    let row = words.length;
+    let column = words[0].length;
+    let wordLen = word.length;
 
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            if (words[i][j] === word[i]) {
-                console.log(word[i]);
-                if (wordCheck(i, j)) return true;
-            }
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < column; j++) {
+            if (words[i][j] === word[0] && wordCheck(i, j, 0)) return true;
         }
     }
     return false;
 
-    function wordCheck(i, j) {
-        console.log(i, j);
+    function wordCheck(i, j, wordIndex) {
+        if (wordIndex === wordLen) return true;
+        if (i >= row || i < 0 || words[i][j] !== word[wordIndex]) return false;
 
-        if ((i === word.length)) return true;
-        if (!words[i] || !words[i][j]) return false;
+        words[i][j] = "V";
 
+        if (wordCheck(i - 1, j, wordIndex + 1) ||
+            wordCheck(i + 1, j, wordIndex + 1) ||
+            wordCheck(i, j - 1, wordIndex + 1) ||
+            wordCheck(i, j + 1, wordIndex + 1)) return true;
 
-        if (wordCheck(i + 1, j)) return true;
-        if (wordCheck(i - 1, j)) return true;
-        if (wordCheck(i, j - 1)) return true;
-        if (wordCheck(i, j + 1)) return true;
-
+        words[i][j] = word[wordIndex];
         return false;
     }
-}
+
+};
+
 
 // words = [
 //     ["C", "D", "Y", "C", "X"],
@@ -52,14 +48,25 @@ function wordSearch(words, word) {
 
 // word = "CAT";
 
-words = [
-    ["D", "S", "A", "N", "C"],
-    ["I", "N", "O", "I", "T"],
-    ["T", "A", "T", "R", "O"],
-    ["M", "F", "O", "U", "T"],
+// words = [
+//     ["D", "S", "A", "N", "C"],
+//     ["I", "N", "O", "I", "T"],
+//     ["T", "A", "T", "R", "O"],
+//     ["M", "F", "O", "U", "T"],
+// ];
+
+// word = "SANCTIONS";
+
+const words = [
+    ["G", "A", "T", "J", "M"],
+    ["R", "G", "R", "G", "N"],
+    ["A", "M", "A", "K", "E"],
+    ["N", "M", "A", "E", "U"],
+    ["D", "L", "R", "R", "Q"],
+    ["M", "Y", "M", "A", "A"],
 ];
 
-word = "SANCTIONS";
+const word = "GRAMMARLY";
 console.log(wordSearch(words, word));
 
 
