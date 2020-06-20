@@ -43,6 +43,6 @@ function countIslands(grid) {
   //that the compant owner(countIsland) reports it the creator. Which is YOU...
   return manager(grid);
 }
-}
+
 
 module.exports = countIslands;
